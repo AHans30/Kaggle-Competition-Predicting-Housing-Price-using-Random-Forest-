@@ -10,5 +10,5 @@ I've also applied k-fold cross validation to calculate accuracy and standard dev
 
 Following, I've tuned my Random forest hyperparameters using GridSearchCV
 
-At the satisfactory mean squared logarithim error of .14, I've learned re-learned parameters to make predictions but used whole training
-data provided by 
+At the satisfactory mean squared logarithim error, I've learned re-learned parameters to make predictions but used whole training
+data provided as train data to make predictions on test.csv and have submuitted it on kaggle to achieve log error of 0.14  
