@@ -86,8 +86,8 @@ def ProcessData(TrainMatrix, TestMatrix):
 
     return (TrainMatrix, TestMatrix)
 
-#ProcessData features scales the data and reduces dimensions retaining >99% 
-# variance of data and returns X_train, X_test and object of class PCA for inverse trans
+#ProcessData features scales the data after adding polynomial features 
+# variance of data and returns X_train, X_test
     
 X_train, X_test = ProcessData(TrainMatrix = X_train,
                                                       TestMatrix = X_test)
