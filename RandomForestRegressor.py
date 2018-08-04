@@ -49,10 +49,6 @@ dataset_test = dataset_master.iloc[1460:, :]
 A.remove('SalePrice')
 dataset_test = dataset_test[A]
 
-#Saving CSVs of our test and training data
-#dataset_train.to_csv('trainProcessed.csv', sep = ',', index= False)
-#dataset_test.to_csv('testProcessed.csv', sep = ',', index = False)
-
 #Filling NA values with column mean
 dataset_train = dataset_train.fillna(dataset_train.mean())
 dataset_test = dataset_test.fillna(dataset_test.mean())
@@ -66,7 +62,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, rando
 
     
 #Process Function    
-def ProcessData(TrainMatrix, TestMatrix):
+def ProcessData(TrainMatrix, TestMatrix=None):
     
     #TrainMatrix = X_train
     #TestMatrix = X_test
@@ -97,15 +93,6 @@ from sklearn.ensemble import RandomForestRegressor as RFR
 regressor1 = RFR (n_estimators = 500, min_samples_leaf = 1, max_depth = 20, 
                   min_samples_split = 3)
 regressor1.fit(X_train, y_train)
-
-"""from sklearn.svm import SVR
-regressor1 = SVR(kernel = 'rbf', C = 0.1, degree = 1)
-regressor1.fit(X_train, y_train)
-
-
-from sklearn.linear_model import ElasticNet
-regressor1 = ElasticNet(alpha = 0.1, l1_ratio = 0.78, fit_intercept = True)
-regressor1.fit(X_train, y_train)"""
 
 y_pred1 = regressor1.predict(X_test)
 
@@ -139,6 +126,16 @@ gs = gs.fit(X_train, y_train)
 best_acc = gs.best_score_
 best_param = gs.best_params_
 
+#Using whole train data to submit reusults on reaching satisfactory score
+X_learn = ProcessData(TrainMatrix = X)
+y_learn = y
+regressor_final = RFR (n_estimators = 500, min_samples_leaf = 1, max_depth = 20, 
+                  min_samples_split = 3)
+regressor_final.fit(X_learn, y_learn)
+
+test_pred = regressor_final.predict(dataset_test.iloc[:,:].values)
+
+np.savetxt("SubmitPredictions.csv", test_pred, delimiter = ',')
 
 
 
