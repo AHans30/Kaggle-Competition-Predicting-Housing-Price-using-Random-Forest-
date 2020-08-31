@@ -1,4 +1,4 @@
-# Kaggle-Competition-Predicting-Housing-Price-using-Random-Forest-
+# Predicting Housing Price using Random Forest
 
 Code for Kaggle competition: https://www.kaggle.com/c/house-prices-advanced-regression-techniques
 
